@@ -1,0 +1,13 @@
+--show all customer id, customer first name, RD a/c no (change the heading to "accountno") and installment amount (change the heading to "installmentamt") even if they do not own an RD a/c. Display 'NA' for Null values.
+
+select bc.cust_id, cust_fname,
+case
+    when ba.account_no is null then 'NA'
+    else to_char(ba.account_no)
+end as account_no,
+case
+    when ba.installment_amt is null then 'NA'
+    else to_char(ba.installment_amt)
+end as installment_amt
+from bank_rd_account ba right join bank_customer bc 
+on ba.rd_cust_id = bc.cust_id;
