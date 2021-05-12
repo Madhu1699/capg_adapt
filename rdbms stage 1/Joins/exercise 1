@@ -1,0 +1,7 @@
+--Display customer id, first & last names, phone no. and city of those customers who live outside "KARNATAKA" and also phone type should "HOME".
+
+select bc.cust_id, cust_fname, cust_lname, cust_phone, cust_city
+from bank_customer bc, bank_cust_contact bcc 
+where bc.cust_id = bcc.cust_id 
+and bcc.cust_state not like '%Karnataka%' 
+and bcc.contact_type like '%HOME%';
