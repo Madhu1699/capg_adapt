@@ -1,0 +1,13 @@
+--Display SB account no, customer ids, first & last names, phone no. of primary and secondary customers who have only joint SB accounts and also contact type "HOME". It should be sorted on the basis of SB account no and customer id in ascending manner.
+
+alter session set current_schema=bank;
+SET heading OFF;
+
+select account_no, bc.cust_id, cust_fname, cust_lname, cust_phone 
+from bank_sb_account ba, bank_customer bc, bank_cust_contact bcc
+where(bc.cust_id = ba.primary_cust_id or bc.cust_id = ba.secondary_cust_id)
+and bc.cust_id = bcc.cust_id
+and contact_type = 'HOME' 
+and primary_cust_id is not null
+and secondary_cust_id is not null
+order by account_no, bc.cust_id;
