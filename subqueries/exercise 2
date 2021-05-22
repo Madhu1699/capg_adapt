@@ -1,0 +1,9 @@
+--List full details of all types of RD account transactions made by all accounts of customers who are from 'Tamilnadu'. (Use subquery)
+
+alter session set current_schema=bank;
+SET heading OFF;
+
+select * from bank_transaction bt
+where bt.trans_acc_no in (select rd.account_no 
+from bank_cust_contact bcc, bank_rd_account rd
+where bcc.cust_id = rd.rd_cust_id and bcc.cust_state = 'Tamilnadu');
