@@ -1,0 +1,9 @@
+--Display account no., fist name and last name of individual customers who have maximum and minimum initial FD amounts.
+
+alter session set current_schema=bank;
+SET heading OFF;
+
+select fd.account_no as account_no, cust_fname, cust_lname
+from bank_customer bc, bank_fd_account fd
+where bc.cust_id = fd.cust_id and (fd.initial_amt = (select max(initial_amt) from bank_fd_account)
+or fd.initial_amt = (select min(initial_amt) from bank_fd_account));
