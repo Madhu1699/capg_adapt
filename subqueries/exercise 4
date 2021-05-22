@@ -1,0 +1,9 @@
+--Which individual customer(s) have not provided their home phone no.? Display their cust id and first name. Hint: Customer Type should be "IND" and Contact Type should be "OFFICE"
+
+alter session set current_schema=bank;
+SET heading OFF;
+
+select cust_id, cust_fname
+from bank_customer bc
+where cust_id not in (select cust_id from bank_cust_contact bcc
+where contact_type like '%OFFI%') and cust_type like '%IND%';
