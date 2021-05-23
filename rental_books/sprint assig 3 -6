@@ -1,0 +1,6 @@
+-- Identify the users who have opted for book named ‘Neural Networks'’
+
+select * from bookrental.user_details 
+where user_id in (select user_id from bookrental.book_rental
+where book_id in (select book_id from bookrental.book 
+where title like '%Neural Network%'));
