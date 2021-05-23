@@ -1,0 +1,6 @@
+--  List the users who has availed the books current month
+
+select * from bookrental.user_details
+where user_id in 
+(select user_id from bookrental.book_rental
+where rental_start_date like '%DEC%');
