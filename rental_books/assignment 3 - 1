@@ -1,0 +1,5 @@
+-- Display the books which was rented out on 20/11/2020
+
+select * from bookrental.book
+where book_id in (select book_id from bookrental.book_rental
+where rental_start_date = '20-NOV-2020');
