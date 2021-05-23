@@ -1,0 +1,7 @@
+-- Display all the users who have rented at least 1 book with details of book and rental return date. 
+
+
+select first_name, title, rental_end_date
+from bookrental.book_rental br inner join bookrental.user_details bu
+on br.user_id = bu.user_id inner join bookrental.book bb
+on br.book_id = bb.book_id;
