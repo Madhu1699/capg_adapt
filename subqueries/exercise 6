@@ -1,0 +1,7 @@
+-- Show details (account no & transaction amount) of those SB a/c debit transactions whose amount is more than the average transaction amount of that S/B account.
+
+select account_no, trans_amt 
+from bank_transaction bt, bank_sb_account sb 
+where bt.trans_acc_no = sb.account_no and
+bt.trans_type like '%DB%' and bt.trans_amt > (select avg(trans_amt) from bank_transaction bt
+  where bt.trans_acc_no = sb.account_no);
