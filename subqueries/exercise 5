@@ -1,0 +1,11 @@
+--List the SB account no.(s) on which no transactions have been made so far (Use NOT EXISTS clause in the query)
+
+
+alter session set current_schema=bank;
+SET heading OFF;
+
+select account_no
+from bank_sb_account sb
+where not exists (select * from bank_transaction bt
+    where sb.account_no = bt.trans_acc_no
+);
