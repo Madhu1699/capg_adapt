@@ -1,0 +1,8 @@
+--Display month and the number of books when the maximum number of books were rented 
+
+select * from 
+(select to_char(rental_start_date,'month'), count(book_id) as total_books
+from book_rental
+group by to_char(rental_start_date, 'month')
+order by total_books desc)
+where rownum = 1;
