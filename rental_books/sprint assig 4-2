@@ -1,0 +1,6 @@
+--Fetch the book's title which was on rent for maximum duration 
+
+select title from (select title from book b, book_rental br
+where b.book_id = br.book_id
+order by (rental_end_date - rental_start_date))
+where rownum = 1;
