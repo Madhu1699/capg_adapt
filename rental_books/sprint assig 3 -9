@@ -1,0 +1,8 @@
+--Display all the users first name, book title , rental start date , rental end date for all users with the rental details even they don’t avail any books for rental and sort the output based on first_name
+
+select first_name, title, rental_start_date, rental_end_date
+from bookrental.book_rental br right outer join bookrental.user_details bu
+on br.user_id = bu.user_id
+left outer join bookrental.book b
+on br.book_id = b.book_id
+order by bu.first_name;
